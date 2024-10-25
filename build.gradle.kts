@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    implementation("io.ktor:ktor-server-openapi")
     implementation("io.ktor:ktor-client-apache5")
     implementation("io.ktor:ktor-client-content-negotiation")
     implementation("io.ktor:ktor-serialization-kotlinx-json")
@@ -39,4 +40,5 @@ dependencies {
     implementation("io.ktor:ktor-server-config-yaml")
     testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    implementation("io.github.smiley4:ktor-swagger-ui:4.0.0")
 }

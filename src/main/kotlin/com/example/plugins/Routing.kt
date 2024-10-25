@@ -2,10 +2,10 @@ package com.example.plugins
 
 import com.example.controllers.v1
 import io.github.smiley4.ktorswaggerui.SwaggerUI
-import io.ktor.http.*
+import io.github.smiley4.ktorswaggerui.routing.openApiSpec
+import io.github.smiley4.ktorswaggerui.routing.swaggerUI
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
-import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.webjars.Webjars
 
@@ -15,14 +15,9 @@ fun Application.configureRouting() {
     }
 
     install(SwaggerUI) {
-        swagger {
-            swaggerUrl = "swagger-ui"
-            forwardRoot = true
-        }
         info {
-            title = "Example API"
+            title = "sevdesk mobile proxy demo"
             version = "latest"
-            description = "Example API for testing and demonstration purposes."
         }
         server {
             url = "http://localhost:8080"
@@ -35,11 +30,11 @@ fun Application.configureRouting() {
             v1()
         }
 
-        get("/") {
-            call.respondText("Hello World!")
+        route("sev_mobile_proxy.json") {
+            openApiSpec()
         }
-        get("/webjars") {
-            call.respondText("<script src='/webjars/jquery/jquery.js'></script>", ContentType.Text.Html)
+        route("swagger-ui") {
+            swaggerUI("/sev_mobile_proxy.json")
         }
     }
 }
